@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-out-https"
-  gem.version       = "0.1.0"
+  gem.version       = "0.1.1"
   gem.authors       = ["Kazunori Sato"]
   gem.email         = ["kazunori279@gmail.com"]
   gem.summary       = %q{A generic Fluentd output plugin to send logs to an HTTPS endpoint}

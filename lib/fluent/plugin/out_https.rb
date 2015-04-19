@@ -1,5 +1,10 @@
 class Fluent::HTTPSOutput < Fluent::Output
-  Fluent::Plugin.register_output('http', self)
+  Fluent::Plugin.register_output('https', self)
+
+  # Define `log` method for v0.10.42 or earlier
+  unless method_defined?(:log)
+    define_method("log") { $log }
+  end
 
   def initialize
     super

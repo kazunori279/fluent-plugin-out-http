@@ -5,3 +5,4 @@
 .bundle
 Gemfile.lock
 vendor
+td-agent.conf

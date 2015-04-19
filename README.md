@@ -5,7 +5,7 @@ A generic [fluentd][1] output plugin for sending logs to an HTTP and HTTPS endpo
 ## Configs
 
     <match *>
-      type            http
+      type            https
       use_ssl         true
       include_tag     true
       include_timestamp true
