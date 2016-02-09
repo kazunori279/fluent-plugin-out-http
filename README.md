@@ -24,6 +24,7 @@ A generic [fluentd][1] output plugin for sending logs to an HTTP and HTTPS endpo
 * Set `include_tag` to true to include fluentd tag in the event log as a property 
 * Set `include_timestamp` to true to include timestamp (UNIX time) in the event log as a property
 * By default, it does not verify the https server. Use VERIFY_PEER and place the cert.pem to the location specified by OpenSSL::X509::DEFAULT_CERT_FILE. 
+* The serializer `hybrid` will convert any hash or array to a JSON string before form-encoding.
 * Majority of the code are cloned from  [fluent-plugin-out-http][2]
 
   [1]: http://fluentd.org/
