@@ -43,7 +43,7 @@ class Fluent::HTTPSOutput < Fluent::Output
     @include_tag = conf['include_tag']
     @include_timestamp = conf['include_timestamp']
 
-    serializers = [:json, :form]
+    serializers = [:json, :form, :hybrid]
     @serializer = if serializers.include? @serializer.intern
                     @serializer.intern
                   else
@@ -82,12 +82,14 @@ class Fluent::HTTPSOutput < Fluent::Output
     end
     if @include_timestamp
       record['timestamp'] = Time.now.to_i
-    end 
-    if @serializer == :json
-      set_json_body(req, record)
-    else
-      req.set_form_data(record)
     end
+    set_json_body(req, record) if @serializer == :json
+    if @serializer == :hybrid
+      record.update(record){|key,v1|
+        (v1.is_a?(Array) || v1.is_a?(Hash)) ? Yajl.dump(v1) : v1
+      }
+    end
+    req.set_form_data(record)
     req
   end
 
